@@ -18,15 +18,19 @@ function clearInputs(){ //clears inputs
     console.log(operator);
 }
 
-function equalClick() {
+function equalClick() { //alerts user if numbers are missing or an operator was not picked, otherwise defines and sends package to server
 if ($('#firstNumber').val() === '' || $('#secondNumber').val() === '' || operator === '') {
-    alert('Please enter two numbers and click an operator');
+    alert('Please enter two numbers and click an operator.');
 } else {
     package.packageNum1 = $('#firstNumber').val();
     package.packageNum2 = $('#secondNumber').val();
     package.packageOperator = operator;
+    packageSent();
 }
 
+function packageSent() {
+    console.log(package);
+}
 
 }
 
