@@ -6,7 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>weekend-jquery-server-calculator</title>
 </head>
+<header>
+    <h1>Server Side Calculator</h1>
+</header>
 <body>
-    
+    <input id="firstNumber" type="text" placeholder="Enter Number" class="input"/>
+    <button type="button" class="button" id="additionButton">+</button>
+    <button type="button" class="button" id="subtractButton">-</button>
+    <button type="button" class="button" id="multiplyButton">*</button>
+    <button type="button" class="button" id="divideButton">/</button>
+    <input id="secondNumber" type="text" placeholder="Enter Number" class="input"/>
+    <button type="button" class="button" id="equalButton">=</button>
+    <button type="button" class="button" id="clearButton">C</button>
+    <div>
+        <h3>Answer:<span id = "answer"></span></h3>
+        <h5>History:<span id = "history"></span></h5>
+    </div>
 </body>
 </html>
