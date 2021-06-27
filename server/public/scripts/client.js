@@ -1,18 +1,23 @@
 $(document).ready(onReady);
 console.log('JS');
 
+let operator = '';
+
+function clearInputs(){
+    $('#firstNumber').val('');
+    $('#secondNumber').val('');
+  }
+
 function onReady() {
   console.log('JQ');
   clearInputs();
-  $('#additionButton').on('click', () => console.log('add'));
-  $('#subtractButton').on('click', () => console.log('sub'));
-  $('#multiplyButton').on('click', () => console.log('mult'));
-  $('#divideButton').on('click', () => console.log('div'));
+//   $('body').on('click', "button.operatorButton", () => console.log($(this).text()));
   $('#equalButton').on('click', () => console.log('equal'));
   $('#clearButton').on('click', () => clearInputs());
+  $('.operatorButton').on('click', handleOperatorClick);
 }
 
-function clearInputs(){
-  $('#firstNumber').val('');
-  $('#secondNumber').val('');
+function handleOperatorClick() {
+    operator = $(this).text();
+    console.log(operator);
 }
