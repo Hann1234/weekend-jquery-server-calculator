@@ -30,6 +30,10 @@ if ($('#firstNumber').val() === '' || $('#secondNumber').val() === '' || operato
     }
 }
 
+function name(params) {
+    
+}
+
 function packageSent() {
     $.ajax({ //This is a HTTP Request; HTTP is a convention for how we do network requests
         method: 'POST',
