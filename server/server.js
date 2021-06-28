@@ -18,6 +18,11 @@ app.listen(port, () => {
 
 app.post('/calculations', (req, res) => {
     console.log('body', req.body);
+
+    //Do some math
+
+    solveEquation();
+
     res.sendStatus(201);
 });
 
@@ -36,7 +41,7 @@ let history = '';
 
 
 //Calculator function
-function solveEquation(package) {
+function solveEquation() {
     switch (package.packageOperator) {
         case '+':
             answer = Number(package.packageNum1) + Number(package.packageNum2); 
@@ -51,6 +56,7 @@ function solveEquation(package) {
             answer = Number(package.packageNum1) / Number(package.packageNum2); 
             break;
         default:
+            answer = res.status(400).send(`Invalid operator: ${req.body.operator}`);
             break;
     }
 }

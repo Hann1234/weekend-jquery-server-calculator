@@ -31,9 +31,10 @@ if ($('#firstNumber').val() === '' || $('#secondNumber').val() === '' || operato
 }
 
 function packageSent() {
-    $.ajax({
+    $.ajax({ //This is a HTTP Request; HTTP is a convention for how we do network requests
         method: 'POST',
         url: 'calculations',
+        //req.body is below
         data: package
     })
     .then(res => {
