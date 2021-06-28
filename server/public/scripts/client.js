@@ -21,17 +21,25 @@ function clearInputs(){ //clears inputs
 function equalClick() { //alerts user if numbers are missing or an operator was not picked, otherwise defines and sends package to server
 if ($('#firstNumber').val() === '' || $('#secondNumber').val() === '' || operator === '') {
     alert('Please enter two numbers and click an operator.');
-} else {
+    } else {
     package.packageNum1 = $('#firstNumber').val();
     package.packageNum2 = $('#secondNumber').val();
     package.packageOperator = operator;
     packageSent();
+    //displayAnswer();
+    }
 }
 
 function packageSent() {
     console.log(package);
 }
 
+function displayAnswer(answer) {
+    $('#answer').empty.append(`${answer}`);
+}
+
+function displayHistory(history) {
+    $('#history').append(`${history}`);
 }
 
 function onReady() { //runs when page loads and sets up listeners ready for some clickies
@@ -40,5 +48,6 @@ function onReady() { //runs when page loads and sets up listeners ready for some
   $('#equalButton').on('click', equalClick);
   $('#clearButton').on('click', () => clearInputs());
   $('.operatorButton').on('click', handleOperatorClick);
+  // displayHistory();
 }
 
