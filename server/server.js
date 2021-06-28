@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const port = 5000; 
 
-app.use(express.static('server/public'));
+app.use(express.static('./server/public')); //servs matching file to send back html
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
