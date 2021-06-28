@@ -31,7 +31,17 @@ if ($('#firstNumber').val() === '' || $('#secondNumber').val() === '' || operato
 }
 
 function packageSent() {
-    console.log(package);
+    $.ajax({
+        method: 'POST',
+        url: 'calculations',
+        data: package
+    })
+    .then(res => {
+        console.log('POST res', res);
+    })
+    .catch(err => {
+        console.log('POST failed', err);
+    })
 }
 
 function displayAnswer(answer) { //displays answer from server, still have to connect server
