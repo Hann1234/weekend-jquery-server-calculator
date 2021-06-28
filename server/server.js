@@ -61,7 +61,7 @@ function solveEquation() {
     }
 }
 
-//have to store previous appends on the server side
+//have to store previous appends on the server side: make an array and push previous values into it
 function historyServer(package, answer) { //adds one list item without removing the previous item even on page refresh right?
     listItem = $('#listItem').append(` 
     <li>${package.packageNum1} ${package.packageOperator} ${package.packageNum2} = ${answer}</li>
