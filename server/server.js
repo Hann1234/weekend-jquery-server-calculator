@@ -14,6 +14,8 @@ app.listen(port, () => {
     console.log('listening on port', port);
   });
 
+const package = [];
+
 //send a new calculation to the server for us to solve
 //send back a 201 that includes an answer
 //send back array that inlcudes package as well as answer and history of calculations
@@ -23,44 +25,43 @@ app.post('/calculations', (req, res) => {
 
     //Do some math
 
-    solveEquation();
+    let answer;
+
+
+    switch (req.body.packageOperator) {
+        case '+':
+            answer = Number(req.body.packageNum1) + Number(req.body.packageNum2); 
+            break;
+        case '-':
+            answer = Number(req.body.packageNum1) - Number(req.body.packageNum2); 
+            break;
+        case '*':
+            answer = Number(req.body.packageNum1) * Number(req.body.packageNum2); 
+            break;
+        case '/':
+            answer = Number(req.body.packageNum1) / Number(req.body.packageNum2); 
+            break;
+        default:
+            answer = res.status(400).send(`Invalid operator: ${req.body.packageOperator}`);
+            break;
+    }
+    console.log('answer', answer);
+    package.push({
+        packageNum1: Number(req.body.packageNum1),
+        packageNum2: Number(req.body.packageNum2),
+        packageOperator: req.body.packageOperator,
+        answer: answer
+    })
 
     res.sendStatus(201);
 });
 
 
-let answer = 0;
-
-let package = {
-    packageNum1: 0,
-    packageNum2: 0,
-    packageOperator: ''
-};
-
 let listItem = '';
 let history = '';
 
 
-//Calculator function
-function solveEquation() {
-    switch (package.packageOperator) {
-        case '+':
-            answer = Number(package.packageNum1) + Number(package.packageNum2); 
-            break;
-        case '-':
-            answer = Number(package.packageNum1) - Number(package.packageNum2); 
-            break;
-        case '*':
-            answer = Number(package.packageNum1) * Number(package.packageNum2); 
-            break;
-        case '/':
-            answer = Number(package.packageNum1) / Number(package.packageNum2); 
-            break;
-        default:
-            answer = res.status(400).send(`Invalid operator: ${req.body.operator}`);
-            break;
-    }
-}
+
 
 //have to store previous appends on the server side: make an array and push previous values into it and send back array to client side along with answer
 function historyServer(package, answer) { //adds one list item without removing the previous item even on page refresh right?
