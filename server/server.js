@@ -15,6 +15,8 @@ app.listen(port, () => {
   });
 
 //send a new calculation to the server for us to solve
+//send back a 201 that includes an answer
+//send back array that inlcudes package as well as answer and history of calculations
 
 app.post('/calculations', (req, res) => {
     console.log('body', req.body);
@@ -26,7 +28,6 @@ app.post('/calculations', (req, res) => {
     res.sendStatus(201);
 });
 
-//send back a 201 that includes an answer
 
 let answer = 0;
 
@@ -61,7 +62,7 @@ function solveEquation() {
     }
 }
 
-//have to store previous appends on the server side: make an array and push previous values into it
+//have to store previous appends on the server side: make an array and push previous values into it and send back array to client side along with answer
 function historyServer(package, answer) { //adds one list item without removing the previous item even on page refresh right?
     listItem = $('#listItem').append(` 
     <li>${package.packageNum1} ${package.packageOperator} ${package.packageNum2} = ${answer}</li>
