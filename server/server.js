@@ -19,6 +19,9 @@ let package = {
     packageOperator: ''
 };
 
+let listItem = '';
+let history = '';
+
 
 //Calculator function
 function solveEquation(package) {
@@ -39,3 +42,16 @@ function solveEquation(package) {
             break;
     }
 }
+
+//have to store previous appends on the server side
+function historyServer(package, answer) { //adds one list item without removing the previous item right?
+    listItem = $('#listItem').append(` 
+    <li>${package.packageNum1} ${package.packageOperator} ${package.packageNum2} = ${answer}</li>
+    `);
+    history = $('#history').append(`
+    <ul>
+        <span id="listItem"></span>
+    </ul>
+    `) //This is a chicken and the egg situation, not sure how to get the logic to work to create the list, add list items, and store the list on the server...need to test (not sure how to right now)
+}
+

@@ -34,12 +34,12 @@ function packageSent() {
     console.log(package);
 }
 
-function displayAnswer(answer) {
+function displayAnswer(answer) { //displays answer from server, still have to connect server
     $('#answer').empty.append(`${answer}`);
 }
 
 function displayHistory(history) {
-    $('#history').append(`${history}`);
+    //run display history function from server within onReady?
 }
 
 function onReady() { //runs when page loads and sets up listeners ready for some clickies
