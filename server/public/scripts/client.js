@@ -26,18 +26,14 @@ if ($('#firstNumber').val() === '' || $('#secondNumber').val() === '' || operato
     package.packageNum2 = $('#secondNumber').val();
     package.packageOperator = operator;
     packageSent();
-    //displayAnswer();
+    getAnswer();
     }
-}
-
-function name(params) {
-    
 }
 
 function packageSent() {
     $.ajax({ //This is a HTTP Request; HTTP is a convention for how we do network requests
         method: 'POST',
-        url: 'calculations',
+        url: '/calculations',
         //req.body is below
         data: package
     })
@@ -49,12 +45,28 @@ function packageSent() {
     })
 }
 
-function displayAnswer(answer) { //displays answer from server, still have to connect server
-    $('#answer').empty.append(`${answer}`);
-}
+function getAnswer() { //gets answer as well as package items for DOM
+    $.ajax({
+        method: 'GET',
+        url: '/calculations'
+    })
+        .then(res => {
+            console.log('GET', res);
+            $('#answer').text(res[res.length - 1].answer); //answer will be located in the last object pushed to the array
 
-function displayHistory(history) {
-    //run display history function from server within onReady?
+            $('#history').empty(); //clearn DOM history to add new complete array
+            for (let object of res) { //append all array objects into DOM to show history
+                $('#history').append(`
+                    <li>
+                        ${object.packageNum1} ${object.packageOperator} ${object.packageNum2} = ${object.answer}
+                    </li>
+                `)
+            }
+
+        })
+        .catch(err => {
+            console.log('GET error', err);
+        })   
 }
 
 function onReady() { //runs when page loads and sets up listeners ready for some clickies
@@ -63,6 +75,5 @@ function onReady() { //runs when page loads and sets up listeners ready for some
   $('#equalButton').on('click', equalClick);
   $('#clearButton').on('click', () => clearInputs());
   $('.operatorButton').on('click', handleOperatorClick);
-  // displayHistory();
 }
 
