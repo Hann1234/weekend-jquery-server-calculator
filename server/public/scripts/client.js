@@ -18,7 +18,7 @@ function clearInputs(){ //clears inputs
     console.log(operator);
 }
 
-function equalClick() { //alerts user if numbers are missing or an operator was not picked, otherwise defines and sends package to server
+function equalClick() { //alerts user if numbers are missing or an operator was not picked, otherwise defines and sends package to server and receives the answer back
 if ($('#firstNumber').val() === '' || $('#secondNumber').val() === '' || operator === '') {
     alert('Please enter two numbers and click an operator.');
     } else {
